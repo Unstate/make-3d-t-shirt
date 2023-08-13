@@ -1,5 +1,5 @@
 import { AccumulativeShadows, RandomizedLight } from "@react-three/drei";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 const Backdrop = () => {
   const shadows = useRef(null);
