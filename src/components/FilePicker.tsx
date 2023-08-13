@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { CustomButton } from ".";
 
 interface FilePickerProps {
@@ -8,32 +8,12 @@ interface FilePickerProps {
 }
 
 const FilePicker: React.FC<FilePickerProps> = ({ file, setFile, readFile }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleDragOver = (event: any) => {
-    event.preventDefault();
-  };
-
-  const handleDrop = (event: any) => {
-    event.preventDefault();
-    setFile(event.dataTransfer.files);
-  };
-
-  const handleClick = (e: any) => {
-    e.preventDefault();
-    if (inputRef.current) {
-      inputRef.current.click();
-    }
-  };
-
-  const handleClearClick = (e: any) => {
-    e.preventDefault();
-    setFile(null);
-  };
 
   return (
     <div className="filepicker-container">
-      <div className="felx-1 flex flex-col">
+      <div
+        className="felx-1 flex flex-col h-full"
+      >
         <input
           id="file-upload"
           type="file"
@@ -53,7 +33,7 @@ const FilePicker: React.FC<FilePickerProps> = ({ file, setFile, readFile }) => {
             : "No file selected"}
         </p>
       </div>
-      <div className="mt-4 flex flex-wrap gap-3 relative top-24">
+      <div className="mt-4 flex flex-wrap gap-3">
         <CustomButton
           type={"outline"}
           title={"Logo"}

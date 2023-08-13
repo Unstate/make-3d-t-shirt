@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
-// import config from "../config/config";
 import state from "../store";
-// import { download } from "../assets";
-import {  reader } from "../config/helpers";
+import { reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
 import { ColorPicker, CustomButton, FilePicker, Tab } from "../components";
-// import { DecalProps } from "@react-three/drei";
 
 type DecalType = {
   [key: string]: string | boolean;
@@ -32,15 +29,12 @@ const Customizer = () => {
   const snap = useSnapshot(state);
 
   const [file, setFile] = useState<FileList | null>(null);
-  // const [promt, setPromt] = useState<string>("");
-  // const [generatingImg, setGeneratingImg] = useState<boolean>(false);
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState<TActiveFilterTab>({
     logoShirt: true,
     stylishShirt: false,
   });
 
-  // show tab content
   const generateTabContent = (): React.ReactElement | null => {
     switch (activeEditorTab) {
       case "colorpicker":
@@ -62,29 +56,27 @@ const Customizer = () => {
     }
   };
 
-   const handleActiveFilterTab = (tabName:string) => {
-     switch (tabName) {
-       case "logoShirt":
-         state.isLogoTexture = !activeFilterTab[tabName];
-         break;
-       case "stylishShirt":
-         state.isFullTexture = !activeFilterTab[tabName];
-         break;
-       default:
-         state.isLogoTexture = true;
-         state.isFullTexture = false;
-         break;
-     }
+  const handleActiveFilterTab = (tabName: string) => {
+    switch (tabName) {
+      case "logoShirt":
+        state.isLogoTexture = !activeFilterTab[tabName];
+        break;
+      case "stylishShirt":
+        state.isFullTexture = !activeFilterTab[tabName];
+        break;
+      default:
+        state.isLogoTexture = true;
+        state.isFullTexture = false;
+        break;
+    }
 
-     // after setting the state, activeFilterTab is updated
-
-     setActiveFilterTab((prevState) => {
-       return {
-         ...prevState,
-         [tabName]: !prevState[tabName],
-       };
-     });
-   };
+    setActiveFilterTab((prevState) => {
+      return {
+        ...prevState,
+        [tabName]: !prevState[tabName],
+      };
+    });
+  };
 
   const readFile = (type: string) => {
     reader(file).then((result) => {

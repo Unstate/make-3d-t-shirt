@@ -16,8 +16,6 @@ const CanvasModel = () => {
       <ambientLight intensity={0.5} />
       <Environment preset="city" />
       <CameraRig>
-        {" "}
-        {/*Camera goes to the center of screen */}
         <Backdrop />
         <Center>
           <Shirt />

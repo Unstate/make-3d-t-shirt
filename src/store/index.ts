@@ -1,5 +1,4 @@
-import { proxy } from 'valtio'
-import asd from '../../public/threejs.png'
+import { proxy } from "valtio";
 
 const state = proxy({
   intro: true,
@@ -10,4 +9,4 @@ const state = proxy({
   fullDecal: "./threejs.png",
 });
 
-export default state
+export default state;
